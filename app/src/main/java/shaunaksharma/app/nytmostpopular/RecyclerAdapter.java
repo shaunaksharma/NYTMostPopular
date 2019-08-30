@@ -1,7 +1,9 @@
 package shaunaksharma.app.nytmostpopular;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -23,14 +25,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private ArrayList<String> mAllAbstracts;
     private ArrayList<String> mAllBylines;
     private ArrayList<String> mAllDates;
+    private ArrayList<String> mAllURLs;
     private Context mContext;
 
-    public RecyclerAdapter(ArrayList<String> allTitles, ArrayList<String> allImages, ArrayList<String> allAbstracts, ArrayList<String> allBylines, ArrayList<String> allDates, Context context) {
+    public RecyclerAdapter(ArrayList<String> allTitles, ArrayList<String> allImages, ArrayList<String> allAbstracts, ArrayList<String> allBylines, ArrayList<String> allDates, ArrayList<String> allURLs,Context context) {
         this.mAllTitles = allTitles;
         this.mAllImages = allImages;
         this.mAllBylines = allBylines;
         this.mAllAbstracts = allAbstracts;
         this.mAllDates = allDates;
+        this.mAllURLs = allURLs;
         this.mContext = context;
     }
 
@@ -61,12 +65,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         viewHolder.listItemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "Ayo " + i, Toast.LENGTH_SHORT).show();
-                //Later versions must open the browser with link to the whole article.
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mAllURLs.get(i)));
+                mContext.startActivity(browserIntent);
             }
         });
 
-        if(i%2 == 0) { viewHolder.listItemLayout.setBackgroundColor(Color.parseColor("#a8f4ec")); }
+        //if(i%2 == 0) { viewHolder.listItemLayout.setBackgroundColor(Color.parseColor("#a8f4ec")); }
     }
 
     @Override

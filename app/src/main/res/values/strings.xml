@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">NYT Most Popular</string>
+    <string name="thumbnail_description">Article Thumbnail Image</string>
+
+    <string-array name="share_type">
+        <item>Most Viewed</item>
+        <item>Most Shared</item>
+        <item>Most Emailed</item>
+    </string-array>
+
+    <string-array name="share_period">
+        <item>Last 24 hours</item>
+        <item>Last 7 days</item>
+        <item>Last 30 days</item>
+    </string-array>
 </resources>
